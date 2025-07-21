@@ -1,9 +1,8 @@
-import { test, expect } from "@playwright/test";
-import { runScenario1 } from "./payables/scenario1.spec.js";
-import { runScenario2 } from "./payables/scenario2.spec.js";
-import { runScenario3 } from "./payables/scenario3.spec.js";
+import { test } from "@playwright/test";
+import { runScenario1 } from "./payables/scenario1.js";
+import { runScenario2 } from "./payables/scenario2.js";
+import { runScenario3 } from "./payables/scenario3.js";
 test("testName", async ({ page }) => {
-  // const sheet = addWorksheet("testName");
   test.setTimeout(150000);
   // await logStep(sheet, "Open de applicatie", async () => {
   await page.goto(
