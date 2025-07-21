@@ -2,7 +2,7 @@ const { chromium } = require("@playwright/test");
 // const fs = require("fs");
 //const path = require("path");
 
-async () => {
+(async () => {
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext({
     locale: "en-US", //defau8lt locale in English
@@ -37,4 +37,4 @@ async () => {
   await browser.close();
 
   console.log("✅ Loginstatus opgeslagen in storageState.json");
-};
+})();
