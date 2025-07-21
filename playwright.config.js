@@ -38,7 +38,7 @@ export default defineConfig({
     browserName: "chromium",
     storageState: "storage/storageState.json", // gebruikt de bewaarde loginstatus
   },
-  globalTeardown: "./globalTeardown.js", // Leegt de storageState.json na de tests
+  // globalTeardown: "./globalTeardown.js", // Leegt de storageState.json na de tests
 
   /* Configure projects for major browsers */
   projects: [
