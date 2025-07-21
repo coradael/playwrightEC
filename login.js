@@ -37,4 +37,5 @@ const { chromium } = require("@playwright/test");
   await browser.close();
 
   console.log("✅ Loginstatus opgeslagen in storageState.json");
+  process.exit(0);
 })();
