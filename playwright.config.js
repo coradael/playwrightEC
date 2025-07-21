@@ -30,10 +30,15 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless: true,
+    actionTimeout: 150000,
+    expect: {
+      timeout: 150000,
+    },
     trace: "on-first-retry",
     browserName: "chromium",
     storageState: "storage/storageState.json", // gebruikt de bewaarde loginstatus
   },
+  globalTeardown: "./globalTeardown.js", // Leegt de storageState.json na de tests
 
   /* Configure projects for major browsers */
   projects: [
