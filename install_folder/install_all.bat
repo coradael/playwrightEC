@@ -4,29 +4,30 @@ setlocal enabledelayedexpansion
 chcp 65001 >nul
 
 :: ==== Algemene instellingen ====
-set TEMPDIR=C:\TempPlaywrightInstall
-set LOGFILE=%TEMPDIR%\install_log.txt
+set TEMPDIR2=C:\Temptest\install_folder\
+set TEMPDIR1=C:\Temptest\Playwright-project\
+set LOGFILE=%TEMPDIR1%\install_log.txt
 
 :: ==== STAP 0: Tijdelijke map aanmaken ====
-if not exist "%TEMPDIR%" (
-    mkdir "%TEMPDIR%"
-    echo ✅ Tijdelijke map aangemaakt op %TEMPDIR%
+if not exist "%TEMPDIR1%" (
+    mkdir "%TEMPDIR1%"
+    echo ✅ Tijdelijke map aangemaakt op %TEMPDIR1%
 ) else (
-    echo ℹ Tijdelijke map bestaat al: %TEMPDIR%
+    echo ℹ Tijdelijke map bestaat al: %TEMPDIR1%
 )
-cd /d "%TEMPDIR%"
+cd /d "%TEMPDIR2%"
 echo ==== Setup gestart op %DATE% %TIME% ==== > "%LOGFILE%"
 
 :: ==== STAP 1: Git controleren/installeren ====
 echo [1/8] Git controleren...
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Git niet gevonden. Installatie starten...
+    echo Git niet gevonden. Installatie starten... Als die klaar is run de script opnieuw.
     echo [INFO] Git wordt geïnstalleerd. >> "%LOGFILE%"
-    start /wait "" Git-2.41.0-64-bit.exe /VERYSILENT /NORESTART
+    start /wait "" Git-2.50.1-64-bit.exe /VERYSILENT /NORESTART
     if %errorlevel% neq 0 (
-        echo ❌ Git installatie mislukt!
-        echo [FOUT] Git installatie mislukt. >> "%LOGFILE%"
+        @REM echo ❌ Git installatie mislukt!
+        @REM echo [FOUT] Git installatie mislukt. >> "%LOGFILE%"
         pause
         exit /b 1
     )
@@ -41,14 +42,14 @@ if %errorlevel% neq 0 (
 echo [2/8] Node.js controleren...
 node -v >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Node.js niet gevonden. Installatie starten...
+    echo Node.js niet gevonden. Installatie starten...Als die klaar is run de script opnieuw.
     echo [INFO] Node.js wordt geïnstalleerd. >> "%LOGFILE%"
-    start /wait "" msiexec /i node-v20.14.0-x64.msi /qn
+    start /wait "" msiexec /i node-v22.16.0-x64.msi /qn
     timeout /t 10 >nul
     node -v >nul 2>&1
     if %errorlevel% neq 0 (
-        echo ❌ Node.js installatie mislukt!
-        echo [FOUT] Node.js installatie mislukt. >> "%LOGFILE%"
+        @REM echo ❌ Node.js installatie mislukt!
+        @REM echo [FOUT] Node.js installatie mislukt. >> "%LOGFILE%"
         pause
         exit /b 1
     )
@@ -61,7 +62,7 @@ if %errorlevel% neq 0 (
 
 :: ==== STAP 3: Projectmap voorbereiden ====
 echo [3/8] Projectmap voorbereiden...
-cd /d "%TEMPDIR%"
+cd /d "%TEMPDIR1%"
 if not exist playwrightEC (
     echo Map 'playwrightEC' wordt klaargezet...
 ) else (
@@ -113,13 +114,15 @@ echo [OK] Chromium geïnstalleerd. >> "%LOGFILE%"
 
 :: ==== STAP 7: Login uitvoeren ====
 echo [7/8] Login script uitvoeren...
-call node login.js
-if %errorlevel% neq 0 (
-    echo ❌ login.js mislukt!
-    echo [FOUT] login.js mislukt. >> "%LOGFILE%"
-    pause
-    exit /b 1
-)
+
+if not exist "%TEMPDIR1%\playwrightEC\storage\storageState.json" (
+    call node login.js
+    if %errorlevel% neq 0 (
+        echo ❌ login.js mislukt!
+        echo [FOUT] login.js mislukt. >> "%LOGFILE%"
+        pause
+        exit /b 1
+    ))
 echo ✅ login.js voltooid.
 echo [OK] login.js voltooid. >> "%LOGFILE%"
 
