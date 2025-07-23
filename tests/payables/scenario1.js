@@ -61,7 +61,7 @@ export async function runScenario1(page) {
     await page.getByRole("textbox", { name: "Number" }).click();
     await page
       .getByRole("textbox", { name: "Number" })
-      .fill("Test-Scenario-EC-1-" + getFormattedDateTime());
+      .fill("Test-Payables-Scenario-1-" + getFormattedDateTime());
     await page.getByRole("textbox", { name: "Amount" }).click();
     await page.getByRole("textbox", { name: "Amount" }).fill("121");
     await page.getByRole("textbox", { name: "Amount" }).press("Tab");

@@ -40,7 +40,7 @@ export async function runScenario2(page) {
     await page.getByRole("textbox", { name: "Number" }).click();
     await page
       .getByRole("textbox", { name: "Number" })
-      .fill("Test-Scenario_EC-2" + getFormattedDateTime());
+      .fill("Test-Payables-Scenario-2-" + getFormattedDateTime());
     await page.getByRole("textbox", { name: "Amount" }).click();
     await page.getByRole("textbox", { name: "Amount" }).fill("121");
     await page.getByRole("textbox", { name: "Amount" }).press("Tab");

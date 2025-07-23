@@ -75,7 +75,7 @@ test(testName, async ({ page }) => {
     await page.getByRole("textbox", { name: "Number" }).click();
     await page
       .getByRole("textbox", { name: "Number" })
-      .fill("Test-Scenario-EC-3" + getFormattedDateTime());
+      .fill("Test-Payables-Scenario-3-" + getFormattedDateTime());
     await page.getByRole("textbox", { name: "Amount" }).click();
     await page.getByRole("textbox", { name: "Amount" }).fill("-1210");
     await page.getByRole("textbox", { name: "Amount" }).press("Tab");
