@@ -4,8 +4,8 @@ setlocal enabledelayedexpansion
 chcp 65001 >nul
 
 :: ==== Algemene instellingen ====
-set TEMPDIR2=C:\Temptest\install_folder\
-set TEMPDIR1=C:\Temptest\Playwright-project\
+set TEMPDIR2=C:\Temp\install_folder\
+set TEMPDIR1=C:\Temp\Playwright-project\
 set LOGFILE=%TEMPDIR1%\install_log.txt
 
 :: ==== STAP 0: Tijdelijke map aanmaken ====
